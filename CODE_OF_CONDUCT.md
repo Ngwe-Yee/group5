@@ -8,7 +8,7 @@ Privacy is one of the important things for an organization that speaks to our in
 
 Privacy and Code of Conduct in Business
 -------
-Privacy and Code of Conduct is used many business all around the world. They are help consumers and other business companies to do comfortably with a business or using its services. There are many advantages because of having a privacy policy and code of conduct signals such as more reliable, principled and committed to doing business responsibly and ethically. Most of the business are put their privacy data policies and code of conduct on their website or cloud, this way is more comfortable transmitting their private information electronically.
+Privacy and Code of Conduct used many business all around the world. They are help consumers and other business companies to do comfortably with a business or using its services. There are many advantages because of having a privacy policy and code of conduct signals such as more reliable, principled and committed to doing business responsibly and ethically. Most of the business are put their privacy data policies and code of conduct on their website or cloud, this way is more comfortable transmitting their private information electronically.
 
 Ethics
 ------
