@@ -12,7 +12,7 @@ Privacy and Code of Conduct is used many business all around the world. They are
 
 Ethics
 ------
-- **Be respectful.** Although opinions may differ, it is important to remain civil and respectful. Work together to foster a productive environment where everyone is allowed to have an opinion without repercussions.
-- **Be inclusive.** We are welcoming of people from all backgrounds on our team, including members of any race, ethnicity, culture, class, orientation, education, age, size, family status, political or religious beliefs and mental and physical ability.
-- **Be considerate.** Treat others how you would like to be treated in the workplace. Each person on this team is important and essential, and each person’s decisions and actions affect our outcomes and morale. 
-- **Be professional.** Conducting yourself professionally includes being kind to others. Maintain professional interactions when communicating with others at all times. 
+- **Be respectful.** Let's respect each other and work together to finish the course work faster.
+- **Be inclusive.** Let's work together different inclusive such as any race, ethnicity, culture, class, orientation, education, age, size, family status, political or religious beliefs and mental and physical ability.
+- **Be considerate.** Please alert the notification on all socials and be considerate all the situations. 
+- **Be professional.** Let's work as like a professional and be learnt all the technical skills if we don't know somethings.
