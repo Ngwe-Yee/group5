@@ -370,7 +370,7 @@ public class App
     public void printCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println(String.format("%-10s %-40s %-40s %-40s %-40s %-40s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
+        System.out.println(String.format("%-10s %-40s %-30s %-38s %-30s %-40s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
         // Lines for table
         System.out.println("________________________________________________________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
