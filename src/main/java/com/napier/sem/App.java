@@ -47,7 +47,7 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
-
+//close connection
         if (con != null)
         {
             try
