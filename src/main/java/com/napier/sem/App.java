@@ -370,13 +370,13 @@ public class App
     public void printCountries(ArrayList<Country> countries)
     {
         // Print header
-        System.out.println(String.format("%-50s %-50s %-50s %-50s %-50s %-50s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
+        System.out.println(String.format("%-10s %-40s %-50s %-50s %-50s %-50s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
         // Lines for table
         System.out.println("___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         // Loop over all countries in the list
         for (Country emp : countries)
         {
-            String emp_string = String.format("%-50s %-50s %-50s %-50s %-50s %-50s", emp.Code, emp.Name, emp.Continent, emp.Region, emp.Population, emp.Capital);
+            String emp_string = String.format("%-10s %-40s %-50s %-50s %-50s %-50s", emp.Code, emp.Name, emp.Continent, emp.Region, emp.Population, emp.Capital);
             System.out.println(emp_string);
         }
         // Closing line
@@ -422,11 +422,6 @@ public class App
         }
     }
 
-//                        "SELECT * "
-//                                + "FROM city, country "
-//                                + "WHERE city.CountryCode = country.Code"
-//                                + "AND country.Continent = 'Asia' "
-//                                + "ORDER BY city.Population DESC ";
     /**
      * Gets all the country data.
      * @return taking data from the mysql data.
