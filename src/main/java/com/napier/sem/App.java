@@ -376,7 +376,7 @@ public class App
         // Loop over all countries in the list
         for (Country emp : countries)
         {
-            String emp_string = String.format("%-10s %-40s %-40s %-40s %-40s %-50s", emp.Code, emp.Name, emp.Continent, emp.Region, emp.Population, emp.Capital);
+            String emp_string = String.format("%-10s %-40s %-40s %-40s %-40s %-40s", emp.Code, emp.Name, emp.Continent, emp.Region, emp.Population, emp.Capital);
             System.out.println(emp_string);
         }
         // Closing line
