@@ -1,7 +1,5 @@
 package com.napier.sem;
 
-import com.mysql.jdbc.StringUtils;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,6 +26,10 @@ public class App
 
         ArrayList<Country> country6 = a.getAllCountries6();
 
+        ArrayList<City> city7 = a.getAllCity7();
+
+        ArrayList<City> city8 = a.getAllCity8();
+
         System.out.println("# All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
 
@@ -45,6 +47,12 @@ public class App
 
         System.out.println("# The top N populated countries in a region where N is provided by the user. #\n");
         a.printCountries(country6);
+
+        System.out.println("# All the cities in the world organised by largest population to smallest. #\n");
+        a.printCities(city7);
+
+        System.out.println("# All the cities in a continent organised by largest population to smallest. #\n");
+        a.printCities(city8);
 
         // Disconnect from database
         a.disconnect();
@@ -126,7 +134,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT *"
                             + "FROM country "
                             + "ORDER BY Population DESC ";
             // Execute SQL statement
@@ -137,6 +145,7 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
@@ -153,25 +162,6 @@ public class App
     }
 
     /**
-     * Prints a list of All the countries in the world organised by largest population to smallest.
-     */
-    public void printCountries(ArrayList<Country> countries)
-    {
-        // Print header
-        System.out.println(String.format("%-50s %-50s %-50s %-50s", "POPULATION", "NAME", "REGION", "CONTINENT"));
-        // Lines for table
-        System.out.println("_________________________________________________________________________________________________________________________________________________________________________________________________");
-        // Loop over all countries in the list
-        for (Country emp : countries)
-        {
-            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Population, emp.Name, emp.Region, emp.Continent);
-            System.out.println(emp_string);
-        }
-        // Closing line
-        System.out.println("*************************************************************************************************************************************************************************************************\n");
-    }
-
-    /**
      * Gets all the country data.
      * @return taking data from the mysql data.
      */
@@ -183,7 +173,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT Name, Code, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "WHERE Continent = 'Asia'"
                             + "ORDER BY Population DESC ";
@@ -195,9 +185,11 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
+                emp.Capital = rset.getInt("Capital");
                 country.add(emp);
             }
             return country;
@@ -222,7 +214,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT Name, Code, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "WHERE Region = 'Southeast Asia'"
                             + "ORDER BY Population DESC ";
@@ -234,9 +226,11 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
+                emp.Capital = rset.getInt("Capital");
                 country.add(emp);
             }
             return country;
@@ -260,7 +254,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT Name, Code, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "ORDER BY Population DESC limit 10 ";
             // Execute SQL statement
@@ -271,9 +265,11 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
+                emp.Capital = rset.getInt("Capital");
                 country.add(emp);
             }
             return country;
@@ -298,7 +294,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT Name, Code, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "WHERE Continent = 'Asia'"
                             + "ORDER BY Population DESC limit 10 ";
@@ -310,9 +306,11 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
+                emp.Capital = rset.getInt("Capital");
                 country.add(emp);
             }
             return country;
@@ -337,7 +335,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, Population "
+                    "SELECT Name, Code, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "WHERE Region = 'Southeast Asia'"
                             + "ORDER BY Population DESC limit 10 ";
@@ -349,9 +347,11 @@ public class App
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
+                emp.Code = rset.getString("Code");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
                 emp.Population = rset.getInt("Population");
+                emp.Capital = rset.getInt("Capital");
                 country.add(emp);
             }
             return country;
@@ -364,4 +364,125 @@ public class App
         }
     }
 
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCountries(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s %-50s %-50s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
+        // Lines for table
+        System.out.println("___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (Country emp : countries)
+        {
+            String emp_string = String.format("%-50s %-50s %-50s %-50s %-50s %-50s", emp.Code, emp.Name, emp.Continent, emp.Region, emp.Population, emp.Capital);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("************************************************************************************************************************************************************************************************************************************************************\n");
+    }
+
+
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity7()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city "
+                            + "ORDER BY Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("Name");
+                emp.CountryCode = rset.getString("CountryCode");
+                emp.District = rset.getString("District");
+                emp.Population = rset.getInt("Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+//                        "SELECT * "
+//                                + "FROM city, country "
+//                                + "WHERE city.CountryCode = country.Code"
+//                                + "AND country.Continent = 'Asia' "
+//                                + "ORDER BY city.Population DESC ";
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity8()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code "
+                            + "AND country.Continent = 'Asia' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("city.Name");
+                emp.CountryCode = rset.getString("city.CountryCode");
+                emp.District = rset.getString("city.District");
+                emp.Population = rset.getInt("city.Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("******************************************************************************************************************************************************************************************************************************************\n");
+    }
 }
