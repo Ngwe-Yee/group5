@@ -22,6 +22,12 @@ public class App
 
         ArrayList<Country> country3 = a.getAllCountries3();
 
+        ArrayList<Country> country4 = a.getAllCountries4();
+
+        ArrayList<Country> country5 = a.getAllCountries5();
+
+        ArrayList<Country> country6 = a.getAllCountries6();
+
         System.out.println("# All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
 
@@ -30,6 +36,15 @@ public class App
 
         System.out.println("# All the countries in a region organised by largest population to smallest. #\n");
         a.printCountries(country3);
+
+        System.out.println("# The top N populated countries in the world where N is provided by the user. #\n");
+        a.printCountries(country4);
+
+        System.out.println("# The top N populated countries in a continent where N is provided by the user. #\n");
+        a.printCountries(country5);
+
+        System.out.println("# The top N populated countries in a region where N is provided by the user. #\n");
+        a.printCountries(country6);
 
         // Disconnect from database
         a.disconnect();
@@ -233,6 +248,120 @@ public class App
             return null;
         }
     }
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<Country> getAllCountries4()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, Region, Population "
+                            + "FROM country "
+                            + "ORDER BY Population DESC limit 10 ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> country = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country emp = new Country();
+                emp.Name = rset.getString("Name");
+                emp.Continent = rset.getString("Continent");
+                emp.Region = rset.getString("Region");
+                emp.Population = rset.getInt("Population");
+                country.add(emp);
+            }
+            return country;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
 
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<Country> getAllCountries5()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, Region, Population "
+                            + "FROM country "
+                            + "WHERE Continent = 'Asia'"
+                            + "ORDER BY Population DESC limit 10 ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> country = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country emp = new Country();
+                emp.Name = rset.getString("Name");
+                emp.Continent = rset.getString("Continent");
+                emp.Region = rset.getString("Region");
+                emp.Population = rset.getInt("Population");
+                country.add(emp);
+            }
+            return country;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<Country> getAllCountries6()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, Region, Population "
+                            + "FROM country "
+                            + "WHERE Region = 'Southeast Asia'"
+                            + "ORDER BY Population DESC limit 10 ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> country = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country emp = new Country();
+                emp.Name = rset.getString("Name");
+                emp.Continent = rset.getString("Continent");
+                emp.Region = rset.getString("Region");
+                emp.Population = rset.getInt("Population");
+                country.add(emp);
+            }
+            return country;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
 
 }
