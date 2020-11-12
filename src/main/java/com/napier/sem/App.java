@@ -1,12 +1,35 @@
 package com.napier.sem;
 
-//import sql for java
 import java.sql.*;
 
-//creating App
 public class App
 {
     public static void main(String[] args)
+    {
+        // Create new Application
+        App a = new App();
+
+        // Connect to database
+        a.connect();
+
+        // Get Country
+        Country emp = a.get_country_list(129);
+
+        //Display Result
+        a.displayCountry(emp);
+
+        // Disconnect from database
+        a.disconnect();
+    }
+    /**
+     * Connection to MySQL database.
+     */
+    private Connection con = null;
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect()
     {
         try
         {
@@ -19,8 +42,6 @@ public class App
             System.exit(-1);
         }
 
-        // Connection to the database
-        Connection con = null;
         int retries = 100;
         for (int i = 0; i < retries; ++i)
         {
@@ -31,10 +52,7 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
-                // Exit for loop
+                System.out.println("Successfully connected!!");
                 break;
             }
             catch (SQLException sqle)
@@ -47,7 +65,13 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
-//close connection
+    }
+
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect()
+    {
         if (con != null)
         {
             try
@@ -61,4 +85,54 @@ public class App
             }
         }
     }
+
+    public Country get_country_list(int Capital)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, Region "
+                            + "FROM country "
+                            + "WHERE Name = " + Capital;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                Country emp = new Country();
+                emp.Name = rset.getString("Name");
+                emp.Continent = rset.getString("Continent");
+                emp.Region = rset.getString("Region");
+                return emp;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    public void displayCountry(Country emp)
+    {
+        if (emp != null)
+        {
+            System.out.println(
+                    emp.Name + " "
+                            + emp.Continent + " "
+                            + emp.Region + "\n"
+                            + emp.SurfaceArea + "\n"
+                            + "Salary:" + emp.IndepYear + "\n"
+                            + emp.Population + "\n"
+                            + "Manager: " + emp.LifeExpectancy + "\n");
+        }
+    }
+
 }
