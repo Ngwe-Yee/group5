@@ -1,6 +1,9 @@
 package com.napier.sem;
 
+import com.mysql.jdbc.StringUtils;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App
 {
@@ -12,12 +15,10 @@ public class App
         // Connect to database
         a.connect();
 
-        // Get Country
-        Country emp = a.get_country_list(129);
+        // Extract employee salary information
+        ArrayList<Country> country = a.getAllCountries();
 
-        //Display Result
-        a.displayCountry(emp);
-
+        a.printCountries(country);
         // Disconnect from database
         a.disconnect();
     }
@@ -52,7 +53,7 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Successfully connected!!");
+                System.out.println("Successfully connected!!\n");
                 break;
             }
             catch (SQLException sqle)
@@ -86,7 +87,11 @@ public class App
         }
     }
 
-    public Country get_country_list(int Capital)
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<Country> getAllCountries()
     {
         try
         {
@@ -94,23 +99,23 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region "
+                    "SELECT Name, Continent, Region, Population "
                             + "FROM country "
-                            + "WHERE Name = " + Capital;
+                            + "ORDER BY Population DESC ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
-            if (rset.next())
+            // Extract employee information
+            ArrayList<Country> country = new ArrayList<Country>();
+            while (rset.next())
             {
                 Country emp = new Country();
                 emp.Name = rset.getString("Name");
                 emp.Continent = rset.getString("Continent");
                 emp.Region = rset.getString("Region");
-                return emp;
+                emp.Population = rset.getInt("Population");
+                country.add(emp);
             }
-            else
-                return null;
+            return country;
         }
         catch (Exception e)
         {
@@ -120,18 +125,21 @@ public class App
         }
     }
 
-    public void displayCountry(Country emp)
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCountries(ArrayList<Country> countries)
     {
-        if (emp != null)
+        System.out.println("# All the countries in the world organised by largest population to smallest #\n");
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s", "POPULATION", "NAME", "REGION", "CONTINENT"));
+        // Lines for table
+        System.out.println("_______________________________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (Country emp : countries)
         {
-            System.out.println(
-                    emp.Name + " "
-                            + emp.Continent + " "
-                            + emp.Region + "\n"
-                            + emp.SurfaceArea + "\n"
-                            + "Salary:" + emp.IndepYear + "\n"
-                            + emp.Population + "\n"
-                            + "Manager: " + emp.LifeExpectancy + "\n");
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Population, emp.Name, emp.Region, emp.Continent);
+            System.out.println(emp_string);
         }
     }
 
