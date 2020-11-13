@@ -1,4 +1,4 @@
-# USE CASE: <number> <the name should be the goal as a short active verb phrase>
+# USE CASE: PROJECT MANAGEMENT FOR WORLD ORGANIZATION 
 
 ## CHARACTERISTIC INFORMATION
 
@@ -8,11 +8,11 @@
 
 ### Scope
 
-*project management for world organization*
+*Project management for world organization*
 
 ### Level
 
-*primary task*
+*Primary task*
 
 ### Preconditions
 
@@ -28,20 +28,20 @@
 
 ### Primary Actor
 
-*users*
+*Users*
 
 ### Trigger
 
-*users request for world organization data to deliver the developer.*
+*Users request for world organization data to deliver the developer.*
 
 ## MAIN SUCCESS SCENARIO
 
-*users capture the population of people to get most populated each region.*
-*users extract the population of people living in cities.*
+*Users capture the population of people to get most populated each region.*
+*Users extract the population of people living in cities.*
 
 ## EXTENSIONS
 
-*users does not put the extension.*
+*Users does not put the extension.*
 
 ## SUB-VARIATIONS
 

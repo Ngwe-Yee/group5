@@ -1,0 +1,17 @@
+@startuml
+
+actor User as "User"
+
+rectangle world.sql
+
+rectangle "World Organization" {
+    usecase UC4 as "Get countries information"
+
+    usecase UCa as "Print detail of countries information"
+
+    User -  UC4
+    UC4 ..> UCa : include
+    UC4 - world.sql
+}
+
+@endum
