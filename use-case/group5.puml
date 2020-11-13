@@ -5,12 +5,56 @@ actor User as "User"
 rectangle world.sql
 
 rectangle "World Organization" {
-    usecase UC4 as "Get countries information"
+    usecase UC4 as "Receive all the countries in the world organised
+                        by largest population to smallest."
+    usecase UC5 as "Receive all the countries in a continent organised
+                        by largest population to smallest."
+    usecase UC6 as "Receive all the countries in a region organised
+                        by largest population to smallest."
+    usecase UC7 as "Receive the top N populated countries
+                        in the world where N is provided by the user."
+    usecase UC8 as "Receive the top N populated countries in a continent
+                                where N is provided by the user."
+    usecase UC9 as "Receive the top N populated countries in a region
+                                where N is provided by the user."
+    usecase UC10 as "Receive all the cities in the world organised
+                                  by largest population to smallest."
+    usecase UC11 as "Receive All the cities in a continent organised
+                                by largest population to smallest."
 
-    usecase UCa as "Print detail of countries information"
+    usecase UCa as "Print all the countries in the world organised
+                    by largest population to smallest."
+    usecase UCb as "Print all the countries in a continent organised
+                              by largest population to smallest."
+    usecase UCc as "Print all the countries in a continent organised
+                              by largest population to smallest."
+    usecase UCd as "Print all the countries in a continent organised
+                              by largest population to smallest."
+    usecase UCe as "Print all the countries in a continent organised
+                                  by largest population to smallest."
+    usecase UCf as "Print all the countries in a continent organised
+                                  by largest population to smallest."
+    usecase UCg as "Print all the countries in a continent organised
+                                  by largest population to smallest."
+    usecase UCh as "Print all the countries in a continent organised
+                                  by largest population to smallest."
 
-    User -  UC4
+    User - UC4
+    User - UC5
+    User - UC6
+    User - UC7
+    User - UC8
+    User - UC9
+    User - UC10
+    User - UC11
     UC4 ..> UCa : include
+    UC5 ..> UCb : include
+    UC6 ..> UCc : include
+    UC7 ..> UCd : include
+    UC8 ..> UCe : include
+    UC9 ..> UCf : include
+    UC10 ..> UCg : include
+    UC11 ..> UCh : include
     UC4 - world.sql
 }
 
