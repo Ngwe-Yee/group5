@@ -1,8 +1,9 @@
 @startuml
 
+left to right direction
 actor User as "User"
 
-rectangle world.sql
+
 
 rectangle "World Organization" {
     usecase UC4 as "Receive all the countries in the world organised
@@ -22,47 +23,15 @@ rectangle "World Organization" {
     usecase UC11 as "Receive all the cities in a continent organised
                                 by largest population to smallest."
 
-    usecase UCa as "Print all the countries in the world organised
-                    by largest population to smallest."
-    usecase UCb as "Print all the countries in a continent organised
-                                                  by largest population to smallest"
-    usecase UCc as "Print all the countries in a region organised
-                                                  by largest population to smallest."
-    usecase UCd as "Print the top N populated countries
-                                                  in the world where N is provided by the user."
-    usecase UCe as "Print the top N populated countries in a continent
-                                                           where N is provided by the user."
-    usecase UCf as "Print the top N populated countries in a region
-                                                          where N is provided by the user."
-    usecase UCg as "Print all the cities in the world organised
-                                                            by largest population to smallest."
-    usecase UCh as "Print all the cities in a continent organised
-                                                          by largest population to smallest."
 
-    User - UC4
-    User - UC5
-    User - UC6
-    User - UC7
-    User - UC8
-    User - UC9
-    User - UC10
-    User - UC11
-    UC4 - UC5
-    UC5 - UC6
-    UC6 - UC7
-    UC7 - UC8
-    UC8 - UC9
-    UC9 - UC10
-    UC10 - UC11
-    UC4 ..> UCa : include
-    UC5 ..> UCb : include
-    UC6 ..> UCc : include
-    UC7 ..> UCd : include
-    UC8 ..> UCe : include
-    UC9 ..> UCf : include
-    UC10 ..> UCg : include
-    UC11 ..> UCh : include
-    UC11 - world.sql
+    User --> UC4
+    User --> UC5
+    User --> UC6
+    User --> UC7
+    User --> UC8
+    User --> UC9
+    User --> UC10
+    User --> UC11
 }
 
 @endum
