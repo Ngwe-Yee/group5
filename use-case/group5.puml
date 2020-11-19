@@ -6,21 +6,21 @@ actor User as "User"
 
 
 rectangle "World Organization" {
-    usecase UC4 as "Receive all the countries in the world organised
+    usecase UC4 as "Display all the countries in the world organised
                         by largest population to smallest."
-    usecase UC5 as "Receive all the countries in a continent organised
+    usecase UC5 as "Display all the countries in a continent organised
                         by largest population to smallest."
-    usecase UC6 as "Receive all the countries in a region organised
+    usecase UC6 as "Display all the countries in a region organised
                         by largest population to smallest."
-    usecase UC7 as "Receive the top N populated countries
+    usecase UC7 as "Display the top N populated countries
                         in the world where N is provided by the user."
-    usecase UC8 as "Receive the top N populated countries in a continent
+    usecase UC8 as "Display the top N populated countries in a continent
                                 where N is provided by the user."
-    usecase UC9 as "Receive the top N populated countries in a region
+    usecase UC9 as "Display the top N populated countries in a region
                                 where N is provided by the user."
-    usecase UC10 as "Receive all the cities in the world organised
+    usecase UC10 as "Display all the cities in the world organised
                                   by largest population to smallest."
-    usecase UC11 as "Receive all the cities in a continent organised
+    usecase UC11 as "Display all the cities in a continent organised
                                 by largest population to smallest."
 
 

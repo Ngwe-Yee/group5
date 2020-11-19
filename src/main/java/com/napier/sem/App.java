@@ -13,7 +13,7 @@ public class App
         // Connect to database
         a.connect();
 /**
-        // Extract employee salary information
+        // Extract Country information
         ArrayList<Country> country1= a.getAllCountries1();
 
         ArrayList<Country> country2 = a.getAllCountries2();
