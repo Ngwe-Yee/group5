@@ -571,7 +571,7 @@ public class App
     public void printCities9(ArrayList<City> cities)
     {
         if (cities == null) {
-            System.out.println("There is no data");
+            System.out.println("There is no data!");
             return;
         }
         // Print header
