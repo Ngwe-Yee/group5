@@ -1,5 +1,4 @@
 FROM openjdk:latest
-COPY ./target/group5-0.2.0.1-jar-with-dependencies.jar /tmp
+COPY ./target/seMethods.jar /tmp
 WORKDIR /tmp
-#jar version update
-ENTRYPOINT ["java", "-jar", "group5-0.2.0.1-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "seMethods.jar", "db:3306"]
