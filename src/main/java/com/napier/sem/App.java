@@ -12,7 +12,7 @@ public class App
 
         // Connect to database
         a.connect();
-
+/**
         // Extract employee salary information
         ArrayList<Country> country1= a.getAllCountries1();
 
@@ -30,6 +30,15 @@ public class App
 
         ArrayList<City> city8 = a.getAllCity8();
 
+*/
+        ArrayList<City> city9 = a.getAllCity9();
+
+        ArrayList<City> city10 = a.getAllCity10();
+
+        ArrayList<City> city11 = a.getAllCity11();
+
+        ArrayList<City> city12 = a.getAllCity12(10);
+/**
         System.out.println("# All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
 
@@ -53,7 +62,18 @@ public class App
 
         System.out.println("# All the cities in a continent organised by largest population to smallest. #\n");
         a.printCities(city8);
+*/
+        System.out.println(("All the cities in a region organised by largest population to smallest. #\n"));
+        a.printCities9(city9);
 
+        System.out.println(("All the cities in a country organised by largest population to smallest. #\n"));
+        a.printCities10(city10);
+
+        System.out.println(("All the cities in a district organised by largest population to smallest. #\n"));
+        a.printCities11(city11);
+
+        System.out.println(("The top N populated cities in the world where N is provided by the user. #\n"));
+        a.printCities11(city12);
         // Disconnect from database
         a.disconnect();
     }
@@ -465,7 +485,7 @@ public class App
     /**
      * Prints a list of All the countries in the world organised by largest population to smallest.
      */
-    public void printCities(ArrayList<City> cities)
+    public void printCities8(ArrayList<City> cities)
     {
         // Print header
         System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
@@ -480,4 +500,255 @@ public class App
         // Closing line
         System.out.println("*****************************************************************************************************************************************************************************************************\n");
     }
+
+
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity9()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code "
+                            + "AND country.Region = 'Eastern Europe' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("city.Name");
+                emp.CountryCode = rset.getString("city.CountryCode");
+                emp.District = rset.getString("city.District");
+                emp.Population = rset.getInt("city.Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities9(ArrayList<City> cities)
+    {
+        if (cities == null) {
+            System.out.println("There is no data");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            if (emp == null)
+                continue;
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("*****************************************************************************************************************************************************************************************************\n");
+    }
+
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity10()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code "
+                            + "AND country.Name = 'Myanmar' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("city.Name");
+                emp.CountryCode = rset.getString("city.CountryCode");
+                emp.District = rset.getString("city.District");
+                emp.Population = rset.getInt("city.Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities10(ArrayList<City> cities)
+    {
+        if (cities == null) {
+            System.out.println("There is no data");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            if (emp == null)
+                continue;
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("*****************************************************************************************************************************************************************************************************\n");
+    }
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity11()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code "
+                            + "AND city.District = 'Texas' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("city.Name");
+                emp.CountryCode = rset.getString("city.CountryCode");
+                emp.District = rset.getString("city.District");
+                emp.Population = rset.getInt("city.Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities11(ArrayList<City> cities)
+    {
+        if (cities == null) {
+            System.out.println("There is no data");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            if (emp == null)
+                continue;
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("*****************************************************************************************************************************************************************************************************\n");
+    }
+    /**
+     * Gets all the country data.
+     * @return taking data from the mysql data.
+     */
+    public ArrayList<City> getAllCity12(int no)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * "
+                            + "FROM city "
+                            + "ORDER BY Population DESC LIMIT " + no;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> city = new ArrayList<City>();
+            while (rset.next())
+            {
+                City emp = new City();
+                emp.Name = rset.getString("Name");
+                emp.CountryCode = rset.getString("CountryCode");
+                emp.District = rset.getString("District");
+                emp.Population = rset.getInt("Population");
+                city.add(emp);
+            }
+            return city;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities12(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("*****************************************************************************************************************************************************************************************************\n");
+    }
+
 }
