@@ -47,4 +47,36 @@ public class AppIntegrationTest
         cities.add(emp);
         app.printCities9(cities);
     }
+
+    // Unit Testing for if the city is null.
+    @Test
+    void printCountryTestNull()
+    {
+        app.printCountries(null);
+    }
+
+    // Unit Testing for if the city is empty.
+    @Test
+    void printCountryEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        app.printCountries(countries);
+    }
+
+    // Data are manually input for unit testing
+    @Test
+    void printCountry()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        Country emp = new Country();
+        emp.Code = "MMR";
+        emp.Name = "Myanmar";
+        emp.Continent = "Rangoon";
+        emp.Region = "Asia";
+        emp.Population = 45611000;
+        emp.Capital = 2710;
+        countries.add(emp);
+        app.printCountries(countries);
+    }
+
 }

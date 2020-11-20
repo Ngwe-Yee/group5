@@ -101,8 +101,6 @@ public class App
         System.out.println("# 16. The top N populated cities in a district where N is provided by the user. #\n");
         a.printAllCity16(city16);
 
-
-
         // Disconnect from database
         a.disconnect();
     }
@@ -418,6 +416,10 @@ public class App
      */
     public void printCountries(ArrayList<Country> countries)
     {
+        if (countries == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-10s %-40s %-30s %-38s %-30s %-40s","Code", "NAME", "CONTINENT", "REGION", "POPULATION", "CAPITAL"));
         // Lines for table
@@ -476,6 +478,10 @@ public class App
      */
     public void printCities7(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
         // Lines for table
@@ -535,6 +541,10 @@ public class App
      */
     public void printCities8(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
         // Lines for table
@@ -785,6 +795,10 @@ public class App
      */
     public void printCities12(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
         // Lines for table
@@ -839,8 +853,11 @@ public class App
 
     public void printAllCity13(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
-
         System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
         // Loop over all city in the list
         System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
@@ -891,8 +908,11 @@ public class App
     }
     public void printAllCity14(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
-
         System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
@@ -941,8 +961,11 @@ public class App
     }
     public void printAllCity15(ArrayList<City> cities)
     {
+        if (cities == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
-
         System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
@@ -992,8 +1015,11 @@ public class App
     }
     public void printAllCity16(ArrayList<City> citydistrictlimit10)
     {
+        if (citydistrictlimit10 == null) {
+            System.out.println("There is no data!");
+            return;
+        }
         // Print header
-
         System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");

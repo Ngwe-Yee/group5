@@ -49,32 +49,32 @@ public class Country {
     public double GNP;
 
     /**
-     * Employee's manager
+     * Country GNP0ld
      */
     public double GNPOld;
 
     /**
-     * Employee's manager
+     * Country LocalName
      */
     public String LocalName;
 
     /**
-     * Employee's manager
+     * Country GovernmentForm
      */
     public String GovernmentForm;
 
     /**
-     * Employee's manager
+     * Country HeadofState
      */
     public String HeadOfState;
 
     /**
-     * Employee's manager
+     * Country Capital
      */
     public int Capital;
 
     /**
-     * Employee's manager
+     * Country Code2
      */
     public String Code2;
 }
