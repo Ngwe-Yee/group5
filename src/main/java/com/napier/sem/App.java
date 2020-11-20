@@ -36,7 +36,6 @@ public class App
 
         ArrayList<City> city8 = a.getAllCity8();
 
-
         ArrayList<City> city9 = a.getAllCity9();
 
         ArrayList<City> city10 = a.getAllCity10();
@@ -53,52 +52,53 @@ public class App
 
         ArrayList<City> city16 =a.getAllCity16();
 
-        System.out.println("# All the countries in the world organised by largest population to smallest #\n");
+        // Print Headers
+        System.out.println("# 1. All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
 
-        System.out.println("# All the countries in a continent organised by largest population to smallest. #\n");
+        System.out.println("# 2. All the countries in a continent organised by largest population to smallest. #\n");
         a.printCountries(country2);
 
-        System.out.println("# All the countries in a region organised by largest population to smallest. #\n");
+        System.out.println("# 3. All the countries in a region organised by largest population to smallest. #\n");
         a.printCountries(country3);
 
-        System.out.println("# The top N populated countries in the world where N is provided by the user. #\n");
+        System.out.println("# 4. The top N populated countries in the world where N is provided by the user. #\n");
         a.printCountries(country4);
 
-        System.out.println("# The top N populated countries in a continent where N is provided by the user. #\n");
+        System.out.println("# 5. The top N populated countries in a continent where N is provided by the user. #\n");
         a.printCountries(country5);
 
-        System.out.println("# The top N populated countries in a region where N is provided by the user. #\n");
+        System.out.println("# 6. The top N populated countries in a region where N is provided by the user. #\n");
         a.printCountries(country6);
 
-        System.out.println("# All the cities in the world organised by largest population to smallest. #\n");
+        System.out.println("# 7. All the cities in the world organised by largest population to smallest. #\n");
         a.printCities7(city7);
 
-        System.out.println("# All the cities in a continent organised by largest population to smallest. #\n");
+        System.out.println("# 8. All the cities in a continent organised by largest population to smallest. #\n");
         a.printCities8(city8);
 
-        System.out.println(("All the cities in a region organised by largest population to smallest. #\n"));
+        System.out.println(("# 9. All the cities in a region organised by largest population to smallest. #\n"));
         a.printCities9(city9);
 
-        System.out.println(("All the cities in a country organised by largest population to smallest. #\n"));
+        System.out.println(("# 10. All the cities in a country organised by largest population to smallest. #\n"));
         a.printCities10(city10);
 
-        System.out.println(("All the cities in a district organised by largest population to smallest. #\n"));
+        System.out.println(("# 11. All the cities in a district organised by largest population to smallest. #\n"));
         a.printCities11(city11);
 
-        System.out.println(("The top N populated cities in the world where N is provided by the user. #\n"));
+        System.out.println(("# 12. The top N populated cities in the world where N is provided by the user. #\n"));
         a.printCities11(city12);
 
-        System.out.println("The top N populated cities in a continent where N is provided by the user. #\n");
+        System.out.println("# 13. The top N populated cities in a continent where N is provided by the user. #\n");
         a.printAllCity13(city13);
 
-        System.out.println("The top N populated cities in a region where N is provided by the user. #\n");
+        System.out.println("# 14. The top N populated cities in a region where N is provided by the user. #\n");
         a.printAllCity14(city14);
 
-        System.out.println("The top N populated cities in a country where N is provided by the user. #\n");
+        System.out.println("# 15. The top N populated cities in a country where N is provided by the user. #\n");
         a.printAllCity15(city15);
 
-        System.out.println("The top N populated cities in a district where N is provided by the user. #\n");
+        System.out.println("# 16. The top N populated cities in a district where N is provided by the user. #\n");
         a.printAllCity16(city16);
 
 
