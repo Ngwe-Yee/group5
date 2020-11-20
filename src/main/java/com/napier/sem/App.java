@@ -11,7 +11,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        a.connect("0.0.0.0:33060");
 /**
         // Extract Country information
         ArrayList<Country> country1= a.getAllCountries1();
