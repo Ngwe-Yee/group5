@@ -1015,7 +1015,8 @@ public class App
     }
     public void printAllCity16(ArrayList<City> citydistrictlimit10)
     {
-        if (citydistrictlimit10 == null) {
+        if (citydistrictlimit10 == null)
+        {
             System.out.println("There is no data!");
             return;
         }
