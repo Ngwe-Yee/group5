@@ -18,7 +18,7 @@ public class App
         {
             a.connect(args[0]);
         }
-/**
+
         // Extract Country information
         ArrayList<Country> country1= a.getAllCountries1();
 
@@ -36,7 +36,7 @@ public class App
 
         ArrayList<City> city8 = a.getAllCity8();
 
-*/
+
         ArrayList<City> city9 = a.getAllCity9();
 
         ArrayList<City> city10 = a.getAllCity10();
@@ -52,7 +52,7 @@ public class App
         ArrayList<City> city15 =a.getAllCity15();
 
         ArrayList<City> city16 =a.getAllCity16();
-/**
+
         System.out.println("# All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
 
@@ -72,11 +72,11 @@ public class App
         a.printCountries(country6);
 
         System.out.println("# All the cities in the world organised by largest population to smallest. #\n");
-        a.printCities(city7);
+        a.printCities7(city7);
 
         System.out.println("# All the cities in a continent organised by largest population to smallest. #\n");
-        a.printCities(city8);
-*/
+        a.printCities8(city8);
+
         System.out.println(("All the cities in a region organised by largest population to smallest. #\n"));
         a.printCities9(city9);
 
@@ -469,6 +469,25 @@ public class App
             System.out.println("Failed to get Country details");
             return null;
         }
+    }
+
+    /**
+     * Prints a list of All the countries in the world organised by largest population to smallest.
+     */
+    public void printCities7(ArrayList<City> cities)
+    {
+        // Print header
+        System.out.println(String.format("%-50s %-50s %-50s %-50s ","NAME", "COUNTRY", "DISTRICT", "POPULATION"));
+        // Lines for table
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        // Loop over all countries in the list
+        for (City emp : cities)
+        {
+            String emp_string = String.format("%-50s %-50s %-50s %-50s", emp.Name, emp.CountryCode, emp.District, emp.Population);
+            System.out.println(emp_string);
+        }
+        // Closing line
+        System.out.println("*****************************************************************************************************************************************************************************************************\n");
     }
 
     /**
