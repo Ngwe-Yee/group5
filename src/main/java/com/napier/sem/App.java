@@ -9,9 +9,15 @@ public class App
     {
         // Create new Application
         App a = new App();
-
         // Connect to database
-        a.connect("0.0.0.0:33060");
+        if (args.length < 1)
+        {
+            a.connect("localhost:33060");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 /**
         // Extract Country information
         ArrayList<Country> country1= a.getAllCountries1();
