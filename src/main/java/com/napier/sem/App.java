@@ -60,7 +60,17 @@ public class App
 
         ArrayList<City> city19 =a.getAllCapitalcity19();
 
-        ArrayList<City> city20 =a.getAllCapitalcity20(10);
+        ArrayList<City> city20 =a.getTopPopulatedCaptialcity20(10);
+
+        ArrayList<City> city21 =a.getTopPopulatedCaptialcity21(10);
+
+        ArrayList<City> city22 =a.getTopPopulatedCaptialcity22(10);
+
+        ArrayList<Country> continents27 = a.getContinentPopulation();
+
+        ArrayList<Country> region28 = a.getRegionList();
+
+        ArrayList<Country> country29 = a.getCountryList();
 
 
         // Print Headers
@@ -98,7 +108,7 @@ public class App
         a.printCities11(city11);
 
         System.out.println(("# 12. The top N populated cities in the world where N is provided by the user. #\n"));
-        a.printCities11(city12);
+        a.printCities12(city12);
 
         System.out.println("# 13. The top N populated cities in a continent where N is provided by the user. #\n");
         a.printAllCity13(city13);
@@ -122,7 +132,23 @@ public class App
         a.printAllCity19(city19);
 
         System.out.println("# 20. The top N populated capital cities in the world where N is provided by the user. #\n");
-        a.printAllCity20(city20);
+        a.printTopPopulatedCapitalCity20(city20);
+
+        System.out.println("# 21. The top N populated capital cities in a continent where N is provided by the user. #\n");
+        a.printTopPopulatedCapitalCity21(city21);
+
+        System.out.println("# 22. The top N populated capital cities in a region where N is provided by the user. #\n");
+        a.printTopPopulatedCapitalCity22(city22);
+
+        System.out.println("\n# 27. The population of a continent. #\n");
+        a.printAllContinents(continents27);
+
+        System.out.println("\n# 28. The population of a region. #\n");
+        a.printAllRegion(region28);
+
+        System.out.println("\n# 29. The population of a country. #\n");
+        a.printAllCountries(country29);
+
 
         // Disconnect from database
         a.disconnect();
@@ -1047,7 +1073,7 @@ public class App
         System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
         // Loop over all cities in the list
         System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
-        for (City cty : getAllCity16())
+        for (City cty : citydistrictlimit10)
         {
             String cty_string =
                     String.format("%-25s %-25s %-35s %25s",
@@ -1215,7 +1241,7 @@ public class App
             return null;
         }
     }
-    public void printAllCity20(ArrayList<City> citydistrictlimit10)
+    public void printTopPopulatedCapitalCity20(ArrayList<City> citydistrictlimit10)
     {
         if (citydistrictlimit10 == null)
         {
@@ -1235,7 +1261,8 @@ public class App
         }
         System.out.println("*************************************************************************************************************************************************************************************************\n");
     }
-    public ArrayList<City> getAllCapitalcity20(int num)
+
+    public ArrayList<City> getTopPopulatedCaptialcity20(int num)
     {
         try
         {
@@ -1266,6 +1293,274 @@ public class App
             System.out.println(e.getMessage());
             System.out.println("Failed to get city region details");
             return null;
+        }
+    }
+
+    public void printTopPopulatedCapitalCity21(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : citydistrictlimit10 )
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> getTopPopulatedCaptialcity21(int num)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital AND country.Continent = 'Asia'"
+                            + "ORDER BY city.Population DESC LIMIT " + num ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city21 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city21.add(cty);
+            }
+            return city21;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public void printTopPopulatedCapitalCity22(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : citydistrictlimit10 )
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> getTopPopulatedCaptialcity22(int num)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital AND country.Region = 'Southeast Asia'"
+                            + "ORDER BY city.Population DESC LIMIT " + num ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city22 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city22.add(cty);
+            }
+            return city22;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getContinentList()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Continent FROM country GROUP BY Continent ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<Country> continents = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country cont = new Country();
+                cont.Continent = rset.getString("Continent");
+                continents.add(cont);
+            }
+            return continents;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getRegionList()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(Population), Region FROM country GROUP BY Region ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<Country> regions = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country regs = new Country();
+                regs.Region = rset.getString("Region");
+                regs.Population= rset.getLong("SUM(Population)");
+                regions.add(regs);
+            }
+            return regions;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getCountryList()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Population, Name FROM country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<Country> countries = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country cunts = new Country();
+                cunts.Name = rset.getString("Name");
+                cunts.Population = rset.getLong("Population");
+                countries.add(cunts);
+            }
+            return countries;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public ArrayList<Country> getContinentPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(Population),Continent FROM country GROUP BY Continent";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<Country> continents = new ArrayList<Country>();
+            while (rset.next())
+            {
+                Country cont = new Country();
+                cont.Continent = rset.getString("Continent");
+                cont.Population = rset.getLong("SUM(Population)");
+                continents.add(cont);
+            }
+            return continents;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public void printAllContinents(ArrayList<Country> continents)
+    {
+        if (continents == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country cont : continents)
+        {
+            System.out.println("The population of Continent=>" +cont.Continent+ ": " + cont.Population);
+        }
+    }
+
+    public void printAllRegion(ArrayList<Country> regions)
+    {
+        if (regions == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country reg : regions)
+        {
+            System.out.println("The population of Region=>" +reg.Region+ ": " + reg.Population);
+        }
+    }
+
+    public void printAllCountries(ArrayList<Country> countries)
+    {
+        if (countries == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country cunt : countries)
+        {
+            System.out.println("The population of Country=>" +cunt.Name+ ": "+ cunt.Population);
         }
     }
 }

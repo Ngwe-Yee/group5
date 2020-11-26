@@ -36,7 +36,7 @@ public class Country {
     /**
      * Country population
      */
-    public int Population;
+    public long Population;
 
     /**
      * Country LifeExpectancy
