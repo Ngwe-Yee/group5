@@ -54,6 +54,15 @@ public class App
 
         ArrayList<City> city16 =a.getAllCity16();
 
+        ArrayList<City> city17 =a.getAllCapitalcity17();
+
+        ArrayList<City> city18 =a.getAllCapitalcity18();
+
+        ArrayList<City> city19 =a.getAllCapitalcity19();
+
+        ArrayList<City> city20 =a.getAllCapitalcity20(10);
+
+
         // Print Headers
         System.out.println("# 1. All the countries in the world organised by largest population to smallest #\n");
         a.printCountries(country1);
@@ -102,6 +111,18 @@ public class App
 
         System.out.println("# 16. The top N populated cities in a district where N is provided by the user. #\n");
         a.printAllCity16(city16);
+
+        System.out.println("# 17. All the capital cities in the world organised by largest population to smallest. #\n");
+        a.printAllCity17(city17);
+
+        System.out.println("# 18. All the capital cities in a continent organised by largest population to smallest. #\n");
+        a.printAllCity18(city18);
+
+        System.out.println("# 19. All the capital cities in a region organised by largest to smallest. #\n");
+        a.printAllCity19(city19);
+
+        System.out.println("# 20. The top N populated capital cities in the world where N is provided by the user. #\n");
+        a.printAllCity20(city20);
 
         // Disconnect from database
         a.disconnect();
@@ -1035,6 +1056,216 @@ public class App
         }
         System.out.println("*************************************************************************************************************************************************************************************************\n");
     }
-
-
+    public void printAllCity17(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : getAllCapitalcity17())
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+    public ArrayList<City> getAllCapitalcity17()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city16 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city16.add(cty);
+            }
+            return city16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+    public void printAllCity18(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : getAllCapitalcity18())
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+    public ArrayList<City> getAllCapitalcity18()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital AND country.Continent = 'Asia' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city16 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city16.add(cty);
+            }
+            return city16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+    public void printAllCity19(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : getAllCapitalcity19())
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+    public ArrayList<City> getAllCapitalcity19()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital AND country.Region = 'Southeast Asia' "
+                            + "ORDER BY city.Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city16 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city16.add(cty);
+            }
+            return city16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+    public void printAllCity20(ArrayList<City> citydistrictlimit10)
+    {
+        if (citydistrictlimit10 == null)
+        {
+            System.out.println("There is no data!");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-25s %-25s %-35s %25s" , "Name", "CountryCode", "District", "Population"));
+        // Loop over all cities in the list
+        System.out.println("______________________________________________________________________________________________________________________________________________________________________________________________________");
+        for (City cty : citydistrictlimit10 )
+        {
+            String cty_string =
+                    String.format("%-25s %-25s %-35s %25s",
+                            cty.Name, cty.CountryCode, cty.District, cty.Population);
+            System.out.println(cty_string);
+        }
+        System.out.println("*************************************************************************************************************************************************************************************************\n");
+    }
+    public ArrayList<City> getAllCapitalcity20(int num)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, city.District, city.District, city.Population, country.Code, country.Continent  "
+                            + "FROM city, country WHERE city.ID = country.Capital "
+                            + "ORDER BY city.Population DESC LIMIT " + num ;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> city16 = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cty = new City();
+                cty.Name = rset.getString("Name");
+                cty.CountryCode = rset.getString("CountryCode");
+                cty.District = rset.getString("District");
+                cty.Population = rset.getInt("Population");
+                city16.add(cty);
+            }
+            return city16;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
 }
