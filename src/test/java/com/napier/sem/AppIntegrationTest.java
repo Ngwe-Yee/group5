@@ -46,7 +46,11 @@ public class AppIntegrationTest
     void printCityEmpty()
     {
         ArrayList<City> cities = new ArrayList<City>();
+        app.printCities7(cities);
         app.printCities9(cities);
+        app.printCities10(cities);
+        app.printCities11(cities);
+        app.printCities12(cities);
     }
 
     // Data are manually input for unit testing
