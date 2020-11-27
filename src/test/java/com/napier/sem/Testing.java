@@ -20,9 +20,24 @@ public class Testing
 
     // Unit Testing for if the city is null.
     @Test
-    void printCityTestNull()
+    void printCityTestNull1()
     {
+        app.printCities7(null);
+        app.printCities8(null);
         app.printCities9(null);
+        app.printCities10(null);
+        app.printCities11(null);
+        app.printCities12(null);
+        app.printAllCity13(null);
+        app.printAllCity14(null);
+        app.printAllCity15(null);
+        app.printAllCity16(null);
+        app.printAllCity17(null);
+        app.printAllCity18(null);
+        app.printAllCity19(null);
+        app.printTopPopulatedCapitalCity20(null);
+        app.printTopPopulatedCapitalCity21(null);
+        app.printTopPopulatedCapitalCity22(null);
     }
 
     // Unit Testing for if the city is empty.
