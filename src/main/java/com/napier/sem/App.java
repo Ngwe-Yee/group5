@@ -66,6 +66,8 @@ public class App
 
         ArrayList<City> city22 =a.getTopPopulatedCaptialcity22(10);
 
+        ArrayList<Country> world_population26 = a.getWorldPopulation();
+
         ArrayList<Country> continents27 = a.getContinentPopulation();
 
         ArrayList<Country> region28 = a.getRegionList();
@@ -139,6 +141,9 @@ public class App
 
         System.out.println("# 22. The top N populated capital cities in a region where N is provided by the user. #\n");
         a.printTopPopulatedCapitalCity22(city22);
+
+        System.out.println("\n# 26. The population of the world. #\n");
+        a.printWorldPopulation(world_population26);
 
         System.out.println("\n# 27. The population of a continent. #\n");
         a.printAllContinents(continents27);
@@ -1406,7 +1411,7 @@ public class App
         }
     }
 
-    public ArrayList<Country> getContinentList()
+    public ArrayList<Country> getWorldPopulation()
     {
         try
         {
@@ -1414,24 +1419,37 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Continent FROM country GROUP BY Continent ";
+                    "SELECT SUM(Population) FROM country";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract City information
-            ArrayList<Country> continents = new ArrayList<Country>();
+            ArrayList<Country> population = new ArrayList<Country>();
             while (rset.next())
             {
                 Country cont = new Country();
-                cont.Continent = rset.getString("Continent");
-                continents.add(cont);
+                cont.Population = rset.getLong("SUM(Population)");
+                population.add(cont);
             }
-            return continents;
+            return population;
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get city region details");
             return null;
+        }
+    }
+
+    public void printWorldPopulation(ArrayList<Country> population)
+    {
+        if (population == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country pop : population)
+        {
+            System.out.println("The population of the world" + ": " + pop.Population);
         }
     }
 
@@ -1465,6 +1483,19 @@ public class App
         }
     }
 
+    public void printAllRegion(ArrayList<Country> regions)
+    {
+        if (regions == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country reg : regions)
+        {
+            System.out.println("The population of Region=>" +reg.Region+ ": " + reg.Population);
+        }
+    }
+
     public ArrayList<Country> getCountryList()
     {
         try
@@ -1492,6 +1523,19 @@ public class App
             System.out.println(e.getMessage());
             System.out.println("Failed to get city region details");
             return null;
+        }
+    }
+
+    public void printAllCountries(ArrayList<Country> countries)
+    {
+        if (countries == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Country cunt : countries)
+        {
+            System.out.println("The population of Country=>" +cunt.Name+ ": "+ cunt.Population);
         }
     }
 
@@ -1538,29 +1582,4 @@ public class App
         }
     }
 
-    public void printAllRegion(ArrayList<Country> regions)
-    {
-        if (regions == null)
-        {
-            System.out.println("No data!!");
-            return;
-        }
-        for (Country reg : regions)
-        {
-            System.out.println("The population of Region=>" +reg.Region+ ": " + reg.Population);
-        }
-    }
-
-    public void printAllCountries(ArrayList<Country> countries)
-    {
-        if (countries == null)
-        {
-            System.out.println("No data!!");
-            return;
-        }
-        for (Country cunt : countries)
-        {
-            System.out.println("The population of Country=>" +cunt.Name+ ": "+ cunt.Population);
-        }
-    }
 }
