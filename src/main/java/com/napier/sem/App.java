@@ -74,6 +74,8 @@ public class App
 
         ArrayList<Country> country29 = a.getCountryList();
 
+        ArrayList<City> district30 = a.getDistrictPopulation();
+
 
         // Print Headers
         System.out.println("# 1. All the countries in the world organised by largest population to smallest #\n");
@@ -153,6 +155,9 @@ public class App
 
         System.out.println("\n# 29. The population of a country. #\n");
         a.printAllCountries(country29);
+
+        System.out.println("\n# 30. The population of a district. #\n");
+        a.printDistrictPopulation(district30);
 
 
         // Disconnect from database
@@ -1579,6 +1584,49 @@ public class App
         for (Country cont : continents)
         {
             System.out.println("The population of Continent=>" +cont.Continent+ ": " + cont.Population);
+        }
+    }
+
+    public ArrayList<City> getDistrictPopulation()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(Population),District FROM city GROUP BY District";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<City> dpop = new ArrayList<City>();
+            while (rset.next())
+            {
+                City cont = new City();
+                cont.District = rset.getString("District");
+                cont.Population = rset.getLong("SUM(Population)");
+                dpop.add(cont);
+            }
+            return dpop;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public void printDistrictPopulation(ArrayList<City> dpop)
+    {
+        if (dpop == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (City cont : dpop)
+        {
+            System.out.println("The population of a District=>" +cont.District+ ": " + cont.Population);
         }
     }
 
