@@ -1,6 +1,5 @@
 package com.napier.sem;
 
-import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -66,7 +65,11 @@ public class App
 
         ArrayList<City> city22 =a.getTopPopulatedCaptialcity22(10);
 
-        ArrayList<Population> percentcontinent23 = a.getContinentPercentage();
+        ArrayList<Population> percent_continent23 = a.getContinentPercentage23();
+
+        ArrayList<Population> percent_region24 = a.getRegionPercentage24();
+
+        ArrayList<Population> percent_country25 = a.getCountryPercentage25();
 
         Long world_population26 = a.getWorldPopulation();
 
@@ -150,7 +153,13 @@ public class App
         a.printTopPopulatedCapitalCity22(city22);
 
         System.out.println("# 23. The population of people, people living in cities, and people not living in cities in each continent. #\n");
-        a.printContinentPercentage(percentcontinent23);
+        a.printContinentPercentage23(percent_continent23);
+
+        System.out.println("\n # 24. The population of people, people living in cities, and people not living in cities in each region. #\n");
+        a.printRegionPercentage24(percent_region24);
+
+        System.out.println("\n # 25. The population of people, people living in cities, and people not living in cities in each country. #\n");
+        a.printRegionPercentage24(percent_country25);
 
         System.out.println("\n# 26. The population of the world. #\n");
         a.printWorldPopulation(world_population26);
@@ -1738,7 +1747,7 @@ public class App
         }
     }
 
-    public ArrayList<Population> getContinentPercentage() throws SQLException {
+    public ArrayList<Population> getContinentPercentage23() throws SQLException {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -1784,6 +1793,98 @@ public class App
         }
     }
 
+    public ArrayList<Population> getRegionPercentage24() throws SQLException {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(Name), Region FROM country GROUP BY Region ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Languages information
+            ArrayList<Population> percentcont = new ArrayList<Population>();
+            ArrayList<String> name = new ArrayList<String>();
+            while (rset.next()) {
+                name.add(rset.getString("Region"));
+            }
+            for(String region_detail:name){
+                Population contpopu =  new Population();
+                ArrayList<String> contname = new ArrayList<String>();
+                Long total = new Long (0);
+                Long popcity = new Long (0);
+                contpopu.Name = region_detail;
+                String strSelect1 = "SELECT Code, Population FROM country WHERE Region = '" + region_detail +"'";
+                ResultSet rset1 = stmt.executeQuery(strSelect1);
+                while (rset1.next())
+                {
+                    contname.add(rset1.getString("Code"));
+                    Long total1 = rset1.getLong("Population");
+                    total = Long.sum(total,total1);
+                }
+                for(String country_code: contname){
+                    String strSelect2 = "SELECT sum(Population) as popcity FROM city WHERE CountryCode = '"+ country_code + "' Group By CountryCode";
+                    Long cccity = getCityPopulation(strSelect2);
+                    popcity = Long.sum(popcity,cccity);
+                }
+                contpopu.Total = total;
+                contpopu.CityPopulation = popcity;
+                percentcont.add(contpopu);
+            }
+            return percentcont;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get detail");
+            return null;
+        }
+    }
+
+    public ArrayList<Population> getCountryPercentage25()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Name, country.Population, sum(city.Population) FROM country, city WHERE country.Code = city.CountryCode Group By country.Code";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract City information
+            ArrayList<Population> country_popu = new ArrayList<Population>();
+            while (rset.next())
+            {
+                Population cont = new Population();
+                cont.Name = rset.getString("country.Name");
+                cont.CityPopulation = rset.getLong("sum(city.Population)");
+                cont.Total = rset.getLong("country.Population");
+                country_popu.add(cont);
+            }
+            return country_popu;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
+    }
+
+    public void printCountryPercentage(ArrayList<Population> country_pop)
+    {
+        if (country_pop == null)
+        {
+            System.out.println("No data!!");
+            return;
+        }
+        for (Population cont : country_pop)
+        {
+            Long percent_calculation = cont.CityPopulation*100/cont.Total;
+            Long not_living_percentage = 100 - percent_calculation;
+            System.out.println("The total population of " +cont.Name+ " living in cities is " + percent_calculation+ "%" + " and not living in cities is " + not_living_percentage + "%.");
+        }
+    }
+
     public Long getCityPopulation(String city_popu)
     {
         try {
@@ -1805,7 +1906,7 @@ public class App
         }
     }
 
-    public void printContinentPercentage(ArrayList<Population> contpercent)
+    public void printContinentPercentage23(ArrayList<Population> contpercent)
     {
         if (contpercent == null)
         {
@@ -1818,9 +1919,27 @@ public class App
             {
                 Long percent_calculation = cont.CityPopulation*100/cont.Total;
                 Long not_living_percentage = 100 - percent_calculation;
-                System.out.println("The total population of " +cont.Name+ " living in cities is " + percent_calculation+ "%" + " and not living in cities is " + not_living_percentage + "%");
+                System.out.println("The total population of " +cont.Name+ " living in cities is " + percent_calculation+ "%" + " and not living in cities is " + not_living_percentage + "%.");
             }
         }
+    }
+
+    public void printRegionPercentage24(ArrayList<Population> regpercent)
+    {
+    if (regpercent == null)
+    {
+        System.out.println("No data!!");
+        return;
+    }
+    for (Population cont : regpercent)
+    {
+        if (cont.Total != 0)
+        {
+            Long percent_calculation = cont.CityPopulation*100/cont.Total;
+            Long not_living_percentage = 100 - percent_calculation;
+            System.out.println("The total population of " +cont.Name+ " living in cities is " + percent_calculation+ "%" + " and not living in cities is " + not_living_percentage + "%.");
+        }
+    }
     }
 
 }
