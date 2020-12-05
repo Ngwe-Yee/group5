@@ -22,6 +22,7 @@ public class Testing
     @Test
     void printCityTestNull1()
     {
+        app.printCountries(null);
         app.printCities7(null);
         app.printCities8(null);
         app.printCities9(null);
@@ -38,6 +39,9 @@ public class Testing
         app.printTopPopulatedCapitalCity20(null);
         app.printTopPopulatedCapitalCity21(null);
         app.printTopPopulatedCapitalCity22(null);
+        app.printContinentPercentage23(null);
+        app.printRegionPercentage24(null);
+        app.printCountryPercentage(null);
     }
 
     // Unit Testing for if the city is empty.
