@@ -1718,38 +1718,6 @@ public class App
         }
     }
 
-    public Long getLanguages()
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String[] language = {"English", "Chinese" , "Hindi", "Spanish", "Arabic" };
-            for (String percent: language)
-            {
-                String strSelect =
-                        "SELECT countrylanguage.Language,countrylanguage.Percentage,SUM(countrylanguage.Percentage*country.Population/100) as rs,countrylanguage.CountryCode, SUM(country.Population) as total,country.Name FROM country,countrylanguage " +
-                                "WHERE countrylanguage.CountryCode = country.Code AND countrylanguage.Language = '" + percent + "'";
-                // Execute SQL statement
-                ResultSet rset = stmt.executeQuery(strSelect);
-                Long real_speaker = new Long(0);
-                while (rset.next()) {
-                    real_speaker = rset.getLong("rs");
-                }
-                Long calculation = real_speaker * 100 / getWorldPopulation();
-                System.out.println("The world percentage of speaking " + percent + " is " + calculation + "%.");
-            }
-            return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get city region details");
-            return null;
-        }
-    }
-
     public ArrayList<Population> getContinentPercentage23() throws SQLException {
         try {
             // Create an SQL statement
@@ -1943,6 +1911,38 @@ public class App
             System.out.println("The total population of " +cont.Name+ " living in cities is " + percent_calculation+ "%" + " and not living in cities is " + not_living_percentage + "%.");
         }
     }
+    }
+
+    public Long getLanguages()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String[] language = {"English", "Chinese" , "Hindi", "Spanish", "Arabic" };
+            for (String percent: language)
+            {
+                String strSelect =
+                        "SELECT countrylanguage.Language,ANY_VALUE(countrylanguage.Percentage),SUM(countrylanguage.Percentage*country.Population/100) as rs,ANY_VALUE(country.Population), ANY_VALUE(countrylanguage.CountryCode), SUM(country.Population) as total,ANY_VALUE(country.Name) FROM country,countrylanguage " +
+                                "WHERE countrylanguage.CountryCode = country.Code AND countrylanguage.Language = '" + percent + "'";
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+                Long real_speaker = new Long(0);
+                while (rset.next()) {
+                    real_speaker = rset.getLong("rs");
+                }
+                Long calculation = real_speaker * 100 / getWorldPopulation();
+                System.out.println("The world percentage of speaking " + percent + " is " + calculation + "%.");
+            }
+            return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city region details");
+            return null;
+        }
     }
 
 }
