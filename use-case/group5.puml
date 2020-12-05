@@ -52,9 +52,19 @@ rectangle "World Organization" {
    where N is provided by the user."
    usecase UC23 as "Display The top N populated capital cities in a region
    where N is provided by the user."
+   usecase UC30 as "Display The population of people, people living in cities,
+   and people not living in cities in each continent."
+   usecase UC31 as "Display The population of people, people living in cities,
+   and people not living in cities in each region."
+   usecase UC32 as "Display The population of people, people living in cities,
+   and people not living in cities in each country."
+   usecase UC27 as " Display The population of a world."
    usecase UC24 as "Display The population of a continent."
    usecase UC25 as "Display The population of a region."
    usecase UC26 as "Display The population of a country."
+   usecase UC28 as "Display The population of a district."
+   usecase UC29 as "Display The The population of a city."
+
 
     User --> UC1
     User --> UC2
@@ -82,6 +92,12 @@ rectangle "World Organization" {
     User --> UC24
     User --> UC25
     User --> UC26
+    User --> UC27
+    User --> UC28
+    User --> UC29
+    User --> UC30
+    User --> UC31
+    User --> UC32
 }
 
 @endum

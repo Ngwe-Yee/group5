@@ -93,9 +93,18 @@
 * The top N populated capital cities in the world where N is provided by the user.
 * The top N populated capital cities in a continent where N is provided by the user.
 * The top N populated capital cities in a region where N is provided by the user.
+* The population of people, people living in cities, and people not living in cities in each continent.
+* The population of people, people living in cities, and people not living in cities in each region.
+* The population of people, people living in cities, and people not living in cities in each country.
+* The population of a world.
 * The population of a continent.
 * The population of a region.
 * The population of a country.
+* Chinese.
+* English.
+* Hindi.
+* Spanish.
+* Arabic.
 
 
 ## EXTENSIONS
